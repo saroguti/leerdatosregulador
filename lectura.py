@@ -25,7 +25,7 @@ while True:
         funciones.vacio(keys, data_dict)
         funciones.enviar(ser, data_dict)
         print("\nError.")
-        time.sleep(0.08)
+        time.sleep(10)
         continue
     try:
         instrument.serial.baudrate = 115200
@@ -35,7 +35,9 @@ while True:
         funciones.enviar(ser, data_dict)
 
         print("\nEnviando datos...")
-        time.sleep(0.08)
+        print("\n", data_dict)
+        
+        time.sleep(10)
 
     # Si existe un error envia un json con NC
     except Exception as e:
@@ -43,4 +45,4 @@ while True:
         funciones.enviar(ser, data_dict)
         print("\nError.")
         instrument.serial.close()
-        time.sleep(0.08)
+        time.sleep(10)

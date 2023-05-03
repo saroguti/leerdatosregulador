@@ -22,8 +22,10 @@ def crear_dic(instrument, keys, data_dict, dir):
             
     for i in range(len(dir)):
         try:
-            if keys[i] == "battery_SOC" or keys[i] == "battery_current" or keys[i] == "load_status":
+            if keys[i] == "battery_SOC" or keys[i] == "load_status":
                 var = instrument.read_register(dir[i], functioncode=4)
+            elif keys[i] == "battery_current":
+                var = (instrument.read_register(dir[i], functioncode=4) - 65000) / 100
             else:
                 var = instrument.read_register(dir[i], functioncode=4)/100
         except:
