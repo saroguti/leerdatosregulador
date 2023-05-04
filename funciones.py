@@ -4,7 +4,7 @@ import minimalmodbus, serial, datetime, json
 
 def validar_instrumento(puerto):
     try:
-        instrument = minimalmodbus.Instrument(puerto, 3, minimalmodbus.MODE_RTU)
+        instrument = minimalmodbus.Instrument(puerto, 1, minimalmodbus.MODE_RTU)
     except minimalmodbus.ModbusException as e:
         return None
     except serial.SerialException as e:
@@ -25,7 +25,7 @@ def crear_dic(instrument, keys, data_dict, dir):
             if keys[i] == "battery_SOC" or keys[i] == "load_status":
                 var = instrument.read_register(dir[i], functioncode=4)
             elif keys[i] == "battery_current":
-                var = (instrument.read_register(dir[i], functioncode=4) - 65000) / 100
+                var = ((instrument.read_register(dir[i], functioncode=4) - 65000) / 100) * -1
             else:
                 var = instrument.read_register(dir[i], functioncode=4)/100
         except:
