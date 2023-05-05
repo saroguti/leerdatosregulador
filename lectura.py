@@ -2,7 +2,7 @@ import time, serial, funciones
 
 # Configuracion del dispositivo
 
-ser = serial.Serial(port='COM4', baudrate=115200)
+ser = serial.Serial(port='COM10', baudrate=115200)
 
 # Direcciones y claves
 
